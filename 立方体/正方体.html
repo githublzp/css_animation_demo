@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>多棱柱</title>
+		<style type="text/css">
+			.wrap{
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				width: 300px;
+				height: 300px;
+				border: 1px solid;
+				perspective: 200px;
+			}
+			.wrap > .box{
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-left: -50px;
+				margin-top: -50px;
+				width: 100px;
+				height: 100px;
+				transform-style: preserve-3d;
+				transform-origin: center center -50px; 
+				
+			}
+			.wrap > .box > div{
+				position: absolute;
+				width: 100px;
+				height: 100px;
+				font: 30px/100px "微软雅黑";
+				text-align: center;
+				background: rgba(123,321,333,.3);
+				transform-origin: center center -50px;
+				backface-visibility: visible;
+			}
+			.wrap > .box > div:nth-child(1){
+				
+			}
+			.wrap > .box > div:nth-child(2){
+				transform: rotateX(180deg);
+			}
+			.wrap > .box > div:nth-child(3){
+				transform: rotateY(-90deg);
+			}
+			.wrap > .box > div:nth-child(4){
+				transform: rotateY(90deg);
+			}
+			.wrap > .box > div:nth-child(5){
+				transform: rotateX(90deg);
+			}
+			.wrap > .box > div:nth-child(6){
+				transform: rotateX(-90deg);
+			}
+			.wrap:hover .box{
+				transform: rotateX(360deg);
+				transition: 2s;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="box">
+				<div>1前</div>
+				<div>2后</div>
+				<div>3左</div>
+				<div>4右</div>
+				<div>5上</div>
+				<div>6下</div>
+			</div>
+		</div>
+	</body>
+</html>

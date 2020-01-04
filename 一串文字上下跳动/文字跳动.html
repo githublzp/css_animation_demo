@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>开机动画</title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			html, body{
+				height: 100%;
+				overflow: hidden;
+			}
+			.wrap{
+				position: relative;
+				height: 100%;
+			}
+			.wrap > .inner{
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+				/* white-space: nowrap; */
+			}
+			.wrap > .inner > span{
+				position: relative;	
+			}
+			@keyframes move{
+				from{
+					top: 0px;
+				}
+				to{
+					top: -15px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="inner">
+				<span>王</span>
+				<span>者</span>
+				<span>荣</span>
+				<span>耀</span>
+				<span>国</span>
+				<span>服</span>
+				<span>亚</span>
+				<span>瑟</span>
+				<span>请</span>
+				<span>战</span>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		window.onload = function() {
+			var spanNode = document.querySelectorAll("span");
+			//定义数组
+			var colors = ["red","orange","black","green","blue","purple","red","pink","black","blue"];
+			for(var i=0;i<spanNode.length;i++) {
+				// 第一个时间值被分配给animation-duration， 第二个时间值分配给 animation-delay
+				spanNode[i].style.animation = "move 0.4s "+(i*0.1)+"s alternate infinite linear";
+				spanNode[i].style.color = colors[i];
+			}
+		}
+	</script>
+</html>

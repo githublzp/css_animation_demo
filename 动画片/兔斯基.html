@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>兔斯基</title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			html,body{
+				height: 100%;
+				overflow: hidden;
+			}
+			.tsj{
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				margin-left: -24px;
+				margin-top: -24px;
+				width: 48px;
+				height: 48px;
+				background: url(img/animation.png) no-repeat;
+				/*steps(a,end)函数
+				 * 第一个值a是步数
+				 * 第二个值：
+				 * end 看不到最后一帧
+				 * start 看不到第一帧
+				 * */
+				/*此动画总共有13帧，因为当to到-576px时，框中最后一帧是空白，而steps函数的步数是12，也就看不到这个空白了
+				 * 所以如果动画是12帧，步数就是12，选择end*/
+				animation: move 1s steps(12, end) infinite;
+			}
+			@keyframes move{
+				from{
+					background-position: 0 0;
+				}
+				to{
+					background-position: -576px 0;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="tsj">
+			
+		</div>
+	</body>
+</html>

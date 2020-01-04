@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>手机开机动画</title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			html, body{
+				height: 100%;
+				overflow: hidden;
+			}
+			.wrap{
+				height: 100%;
+				position: relative;
+				background: darksalmon;
+				perspective: 200px;
+			}
+			.wrap > .inner{
+				position: relative;
+				height: 100%;
+				transform-style: preserve-3d;
+			}
+			@keyframes move{
+				from{transform: translate(-50%, -50%) rotateY(0deg);}
+				to{transform: translate(-50%, -50%) rotateY(360deg);}
+			}
+			
+			.wrap > .inner > img{
+				margin-top: -40px;
+				/* 通过width控制图片大小 */
+				/* width: 8%; */
+				width: 30%;
+				animation: move 1.5s linear infinite;
+			}
+			.wrap > .inner > img, .wrap > .inner > p{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<div class="inner">
+				<img src="img/load/logo2.png"/>
+				<p>已加载0%</p>
+			</div>
+		</div>
+	</body>
+	<script src="js/data.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			var pNode = document.querySelector("p");
+			var flag = 0;
+			var arr = [];
+			//for in循环 用来循环遍历对象
+			for(item in imgData) {
+				//concat函数用来实现多个数组的拼接
+				//item是每个对象的键
+				//imgData[item]通过键名取得对应的值
+				arr = arr.concat(imgData[item]);
+			}
+			for(var i=0;i<arr.length;i++) {
+				//新建image图片对象
+				var img = new Image();
+				//遍历出的是图片地址，会访问图片地址
+				img.src = arr[i];
+				//图片请求成功会执行这个
+				img.onload = function() {
+					flag++;
+					//Math.round()函数返回一个四舍五入后的整数
+					pNode.innerHTML = "已加载"+(Math.round(flag/arr.length*100))+"%";
+				}
+				img.onerror = function() {
+					console.log("图片地址不正确");
+				}
+			}
+		}
+	</script>
+</html>
